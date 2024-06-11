@@ -19,6 +19,9 @@ class SimonController:
         else:
             self.view.show_game_over(self.model.score)
             self.start_game()
+    def createUser(self,nom):
+        self.model.setUser(nom)
+        self.model.mostrarU()
     def next_round(self):
         self.model.user_sequence=[]
         self.model.add_random_color()

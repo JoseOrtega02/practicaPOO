@@ -1,18 +1,42 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import StringVar, Toplevel, ttk
 from tkinter import messagebox
 class View:
     __root:object
     __conrroller:object
     __colores:list
     __buttons:list
+    __dialogo:object
+    __nomU:str
     def __init__(self,root,controller):
         self.__root = root
         self.__conrroller = controller
         self.__root.title("Simon Game")
+        self.nombre()
         self.__colores = ["#ff0000","#00ff00","#0000ff","#ffff00"]
         self.__buttons =[]
         self.create_buttons()
+    def nombre(self):
+        self.__dialogo = tk.Toplevel()
+        self.__dialogo.geometry("500x500")
+        self.__dialogo.title("nombre")
+       
+        
+        etiq = ttk.Label(self.__dialogo,text="Jugador")
+        self.__nomU= StringVar()
+        self.__nomU.set("") 
+        input=ttk.Entry(self.__dialogo,textvariable=self.__nomU,width=30)
+
+        etiq.pack(side="left")
+        input.pack(side="right")
+        boton = ttk.Button(self.__dialogo, text='Cerrar',command=self.handleBtnUser)
+        boton.pack(side="bottom", padx=20, pady=20)
+
+        self.__root.wait_window(self.__dialogo)
+    
+    def handleBtnUser(self):
+        self.__conrroller.createUser(self.__nomU.get())
+        self.__dialogo.destroy()
     @property
     def buttons(self):
         return self.__buttons
