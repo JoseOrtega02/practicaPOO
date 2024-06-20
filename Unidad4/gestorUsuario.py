@@ -16,8 +16,8 @@ class GestorJugadores:
                 for item in data["usuarios"]:
                     jugador = Usuario(item["nombre"])
                     jugador.setPuntaje(item["puntaje"])
-                    jugador._Usuario__fecha = item["fecha"]  # Accessing the private attribute directly
-                    jugador._Usuario__hora = item["hora"]    # Accessing the private attribute directly
+                    jugador._Usuario__fecha = item["fecha"] 
+                    jugador._Usuario__hora = item["hora"] 
                     self.agregar_jugador(jugador)
             self.jugadores.sort(reverse=True)
 

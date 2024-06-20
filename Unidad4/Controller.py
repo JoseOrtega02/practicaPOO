@@ -11,6 +11,7 @@ class SimonController:
         self.view = View(root, self)
         self.root = root
         self.gestor_jugadores = GestorJugadores()
+        self.timer = None
         self.start_game()
         self.create_menu()
 
@@ -23,20 +24,27 @@ class SimonController:
             if self.model.user_input_complete():
                 self.model.score += 1
                 self.root.after(1000, self.next_round)
+                self.reset_timer() 
+            else:
+                self.view.show_game_over(self.model.score)
+                self.model.user.setPuntaje(self.model.score) 
+                self.save_score(self.model.user)  
+                self.start_game()
         else:
             self.view.show_game_over(self.model.score)
-            self.model.user.setPuntaje(self.model.score)  # Set user score
-            self.save_score(self.model.user)  # Save score to JSON
+            self.model.user.setPuntaje(self.model.score) 
+            self.save_score(self.model.user) 
             self.start_game()
 
-    def createUser(self, nom):
-        self.model.setUser(nom)
+    def createUser(self, nom, nivel):
+        self.model.setUser(nom, nivel)
         self.model.mostrarU()
 
     def next_round(self):
         self.model.user_sequence = []
         self.model.add_random_color()
         self.view.flash_sequence(self.model.sequence)
+        self.reset_timer()  
 
     def start_game(self):
         self.model.reset_game()
@@ -65,6 +73,18 @@ class SimonController:
         file_path = "pysimonpuntajes.json"
         self.gestor_jugadores.cargar_jugadores(file_path)
         self.view.show_puntajes(self.gestor_jugadores.jugadores)
+
+    def reset_timer(self):
+        if self.model.nivel in ['Experto', 'Super Experto']:
+            if self.timer is not None:
+                self.root.after_cancel(self.timer)
+            self.timer = self.root.after(5000, self.timer_expired)
+
+    def timer_expired(self):
+        self.view.show_game_over(self.model.score)
+        self.model.user.setPuntaje(self.model.score)
+        self.save_score(self.model.user)
+        self.start_game()
 
 if __name__ == "__main__":
     root = tk.Tk()

@@ -7,6 +7,7 @@ class View:
         self.controller = controller
         self.root.title("Simon Game")
         self.nombre()
+        self.nivel()
         self.colores = ["#ff0000", "#00ff00", "#0000ff", "#ffff00"]
         self.buttons = []
         self.create_buttons()
@@ -23,8 +24,16 @@ class View:
         boton = ttk.Button(self.dialogo, text='Iniciar Juego', command=self.handleBtnUser)
         boton.pack(side="bottom", padx=20, pady=20)
 
+    def nivel(self):
+        ttk.Label(self.root, text="Seleccione Nivel").grid(row=2, column=0, padx=10, pady=10)
+        self.nivel_var = StringVar()
+        self.nivel_var.set("Principiante")
+        niveles = ["Principiante", "Experto", "Super Experto"]
+        self.nivel_menu = ttk.OptionMenu(self.root, self.nivel_var, "Principiante", *niveles)
+        self.nivel_menu.grid(row=2, column=1, padx=10, pady=10)
+
     def handleBtnUser(self):
-        self.controller.createUser(self.nomU.get())
+        self.controller.createUser(self.nomU.get(), self.nivel_var.get())
         self.dialogo.destroy()
 
     def create_buttons(self):
@@ -51,13 +60,14 @@ class View:
     def show_puntajes(self, jugadores):
         dialogo = Toplevel(self.root)
         dialogo.title("Galería de Puntajes")
-        tree = ttk.Treeview(dialogo, columns=("Jugador", "Fecha", "Hora", "Puntaje"), show="headings")
+        tree = ttk.Treeview(dialogo, columns=("Jugador", "Fecha", "Hora", "Puntaje", "Nivel"), show="headings")
         tree.heading("Jugador", text="Jugador")
         tree.heading("Fecha", text="Fecha")
         tree.heading("Hora", text="Hora")
         tree.heading("Puntaje", text="Puntaje")
+        tree.heading("Nivel", text="Nivel")
         for jugador in jugadores:
-            tree.insert("", "end", values=(jugador._Usuario__nombre, jugador._Usuario__fecha, jugador._Usuario__hora, jugador._Usuario__puntaje))
+            tree.insert("", "end", values=(jugador._Usuario__nombre, jugador._Usuario__fecha, jugador._Usuario__hora, jugador._Usuario__puntaje, jugador._Usuario__nivel))
         tree.pack(padx=20, pady=20)
         boton = ttk.Button(dialogo, text="Cerrar", command=dialogo.destroy)
         boton.pack(pady=10)
