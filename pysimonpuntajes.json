@@ -1,0 +1,28 @@
+{
+    "usuarios": [
+        {
+            "nombre": "aaa",
+            "puntaje": 0,
+            "fecha": "20-06-2024",
+            "hora": "02:00:57"
+        },
+        {
+            "nombre": "Enzo",
+            "puntaje": 0,
+            "fecha": "20-06-2024",
+            "hora": "03:26:15"
+        },
+        {
+            "nombre": "Enzo",
+            "puntaje": 0,
+            "fecha": "20-06-2024",
+            "hora": "03:26:15"
+        },
+        {
+            "nombre": "Enzo",
+            "puntaje": 2,
+            "fecha": "20-06-2024",
+            "hora": "03:26:15"
+        }
+    ]
+}
