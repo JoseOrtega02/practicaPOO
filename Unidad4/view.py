@@ -2,12 +2,12 @@ import tkinter as tk
 from tkinter import StringVar, Toplevel, ttk, messagebox
 
 class View:
+    nivel_var:str
     def __init__(self, root, controller):
         self.root = root
         self.controller = controller
         self.root.title("Simon Game")
         self.nombre()
-        self.nivel()
         self.colores = ["#ff0000", "#00ff00", "#0000ff", "#ffff00"]
         self.buttons = []
         self.create_buttons()
@@ -23,16 +23,18 @@ class View:
         input.pack(side="right")
         boton = ttk.Button(self.dialogo, text='Iniciar Juego', command=self.handleBtnUser)
         boton.pack(side="bottom", padx=20, pady=20)
+        self.root.wait_window(self.dialogo)
 
     def nivel(self):
         ttk.Label(self.root, text="Seleccione Nivel").grid(row=2, column=0, padx=10, pady=10)
         self.nivel_var = StringVar()
         self.nivel_var.set("Principiante")
         niveles = ["Principiante", "Experto", "Super Experto"]
-        self.nivel_menu = ttk.OptionMenu(self.root, self.nivel_var, "Principiante", *niveles)
+        self.nivel_menu = ttk.OptionMenu(self.root, self.nivel_var, *niveles,command=self.controller.setNivel)
         self.nivel_menu.grid(row=2, column=1, padx=10, pady=10)
 
     def handleBtnUser(self):
+        self.nivel()
         self.controller.createUser(self.nomU.get(), self.nivel_var.get())
         self.dialogo.destroy()
 

@@ -24,12 +24,6 @@ class SimonController:
             if self.model.user_input_complete():
                 self.model.score += 1
                 self.root.after(1000, self.next_round)
-                self.reset_timer() 
-            else:
-                self.view.show_game_over(self.model.score)
-                self.model.user.setPuntaje(self.model.score) 
-                self.save_score(self.model.user)  
-                self.start_game()
         else:
             self.view.show_game_over(self.model.score)
             self.model.user.setPuntaje(self.model.score) 
@@ -50,6 +44,10 @@ class SimonController:
         self.model.reset_game()
         self.next_round()
 
+    def setNivel(self,nivel):
+        print(f"nivel:{nivel}")
+        self.model.setNivel(nivel)
+        self.start_game()
     def save_score(self, user):
         encoder = ObjectEncoder()
         file_path = "pysimonpuntajes.json"

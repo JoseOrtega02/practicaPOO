@@ -13,7 +13,8 @@ class SimonModel:
         self.user = Usuario(nom)
         self.nivel = nivel
         self.user.setNivel(nivel)
-
+    def setNivel(self,nivel):
+        self.nivel = nivel
     def mostrarU(self):
         print(f"{self.user}")
 
@@ -23,8 +24,10 @@ class SimonModel:
         self.score = 0
 
     def add_random_color(self):
-        self.sequence.append(random.randint(0, 3))
-        if self.nivel == 'Super Experto':
+        if self.nivel == "Principiante" or self.nivel =="Experto":
+            self.sequence.append(random.randint(0, 3))
+        elif self.nivel == 'Super Experto':
+            self.sequence.append(random.randint(0, 3))
             self.sequence.append(random.randint(0, 3))
 
     def check_user_input(self):
