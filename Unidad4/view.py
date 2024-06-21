@@ -30,7 +30,7 @@ class View:
         self.nivel_var = StringVar()
         self.nivel_var.set("Principiante")
         niveles = ["Principiante", "Experto", "Super Experto"]
-        self.nivel_menu = ttk.OptionMenu(self.root, self.nivel_var, *niveles,command=self.controller.setNivel)
+        self.nivel_menu = ttk.OptionMenu(self.root, self.nivel_var,"Principiante", *niveles,command=self.controller.setNivel)
         self.nivel_menu.grid(row=2, column=1, padx=10, pady=10)
 
     def handleBtnUser(self):
