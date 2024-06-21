@@ -247,6 +247,48 @@
             "fecha": "20-06-2024",
             "hora": "15:53:24",
             "nivel": "Principiante"
+        },
+        {
+            "nombre": "jose",
+            "puntaje": 1,
+            "fecha": "21-06-2024",
+            "hora": "19:08:34",
+            "nivel": "Principiante"
+        },
+        {
+            "nombre": "jose",
+            "puntaje": 2,
+            "fecha": "21-06-2024",
+            "hora": "19:08:34",
+            "nivel": "Principiante"
+        },
+        {
+            "nombre": "j",
+            "puntaje": 2,
+            "fecha": "21-06-2024",
+            "hora": "19:16:58",
+            "nivel": "Principiante"
+        },
+        {
+            "nombre": "j",
+            "puntaje": 0,
+            "fecha": "21-06-2024",
+            "hora": "19:16:58",
+            "nivel": "Principiante"
+        },
+        {
+            "nombre": "j",
+            "puntaje": 2,
+            "fecha": "21-06-2024",
+            "hora": "19:34:51",
+            "nivel": "Principiante"
+        },
+        {
+            "nombre": "j",
+            "puntaje": 0,
+            "fecha": "21-06-2024",
+            "hora": "19:35:45",
+            "nivel": "Principiante"
         }
     ]
 }

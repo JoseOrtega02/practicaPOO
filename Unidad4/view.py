@@ -11,7 +11,7 @@ class View:
         self.colores = ["#ff0000", "#00ff00", "#0000ff", "#ffff00"]
         self.buttons = []
         self.create_buttons()
-
+        self.puntaje()
     def nombre(self):
         self.dialogo = Toplevel()
         self.dialogo.title("Usuario")
@@ -24,8 +24,13 @@ class View:
         boton = ttk.Button(self.dialogo, text='Iniciar Juego', command=self.handleBtnUser)
         boton.pack(side="bottom", padx=20, pady=20)
         self.root.wait_window(self.dialogo)
-
+    def puntaje(self):
+        self.l=ttk.Label(self.root,text=f"Puntaje: {self.controller.getPuntaje()}")
+        self.l.grid(row=3,column=0,padx=10,pady=10)
+    def updateScore(self,score):
+        self.l.config(text=f"Puntaje: {score}")
     def nivel(self):
+        
         ttk.Label(self.root, text="Seleccione Nivel").grid(row=2, column=0, padx=10, pady=10)
         self.nivel_var = StringVar()
         self.nivel_var.set("Principiante")

@@ -23,6 +23,7 @@ class SimonController:
         if self.model.check_user_input():
             if self.model.user_input_complete():
                 self.model.score += 1
+                self.view.updateScore(self.model.score)
                 self.root.after(1000, self.next_round)
         else:
             self.view.show_game_over(self.model.score)
@@ -76,14 +77,15 @@ class SimonController:
         if self.model.nivel in ['Experto', 'Super Experto']:
             if self.timer is not None:
                 self.root.after_cancel(self.timer)
-            self.timer = self.root.after(5000, self.timer_expired)
+            self.timer = self.root.after(30000, self.timer_expired)
 
     def timer_expired(self):
         self.view.show_game_over(self.model.score)
         self.model.user.setPuntaje(self.model.score)
         self.save_score(self.model.user)
         self.start_game()
-
+    def getTime(self):
+        return self.timer
 if __name__ == "__main__":
     root = tk.Tk()
     controller = SimonController(root)
